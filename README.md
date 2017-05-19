@@ -8,10 +8,11 @@ A Vue.js component for make ajax form ease.
 $ npm install simple-vue-form
 ```
 ## Usage
+You must specify a post url in :action="" with single quotes like conventional html5 form, also you must specify a "success" and "error" function for receive the data from ajax post.
+
 ```html
 <template>
     <simple-vue-form :action="'/api/post'" @ajaxSuccess="formSuccess" @ajaxError="formError">
-    //You must specify post url in :action="" with single quotes like conventional html5 form.
       <input name="title"/>
       <textarea name="body"></textarea>
       <input type="submit"/>

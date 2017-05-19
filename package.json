@@ -11,9 +11,10 @@
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "vue": "^2.2.6",
+    "vue": "^2.2.6"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
@@ -56,14 +57,11 @@
     "webpack": "^2.3.3",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.18.0",
-    "webpack-merge": "^4.1.0",
+    "webpack-merge": "^4.1.0"
   },
   "engines": {
     "node": ">= 4.0.0",
-    "npm": ">= 3.0.0",
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "npm": ">= 3.0.0"
   },
   "bugs": {
     "url": "https://github.com/DWeikis/simple-vue-form/issues"
