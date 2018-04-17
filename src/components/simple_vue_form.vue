@@ -5,38 +5,45 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'simple_vue_form',
   data () {
     return {
       trueTags: ['input', 'textarea', 'select'],
       notInputTypes: ['submit', 'reset', 'button'],
-      data: []
+      dataForm: {}
     }
   },
-  props: ['action'],
+  props: ['action', 'config'],
   methods: {
     postForm () {
-      var form = document.querySelector('form').childNodes
+      const form = document.querySelector('form').childNodes
       form.forEach(param => {
         if (this.trueTags.indexOf(param.tag) && this.notInputTypes.indexOf(param.type) === -1 && param.value !== undefined) {
-          this.data[param.name] = param.value
+          this.dataForm[param.name] = param.value
         }
       })
-      this.ajaxPost()
+      this.post()
+    },
+    post () {
+      if (this.config.ajax) {
+        this.ajaxPost()
+      }
+      if (this.config.formData) {
+        this.postData()
+      }
+    },
+    postData () {
+      this.$emit('dataForm', this.dataForm)
     },
     ajaxPost () {
-      let self = this
-      let xhr = new XMLHttpRequest()
-      xhr.open('POST', this.action, true)
-      xhr.onload = function () {
-        self.$emit('ajaxSuccess', xhr.response)
-      }
-      xhr.onerror = function () {
-        self.$emit('ajaxError', xhr.response)
-      }
-      xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
-      xhr.send(this.data)
+      axios.post(this.action, this.dataForm).then(response => {
+        this.$emit('ajaxSuccess', response)
+      }).catch(error => {
+        this.$emit('ajaxError', error)
+      })
     }
   }
 }
