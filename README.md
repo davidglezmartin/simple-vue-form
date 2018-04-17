@@ -10,14 +10,14 @@ $ npm i simple-vue-form
 ## Usage
 You must specify a post url in action="" like conventional html5 form, also you must specify a "data", "success" and "error" function for receive the data and ajax responses.
 
-###Config
+#### Config
 ```html
 config: {
   ajax: true, //if you want use a integrated ajax
   formData: true //if you want receive the data of form
 }
 ```
-###Example
+#### Example
 ```html
 <template>
     <simple-vue-form action="/posts" 
